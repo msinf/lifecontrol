@@ -1,0 +1,93 @@
+
+
+body {
+  padding-top: 100px;
+  background-color:white; margin:0; }
+
+  #contenitore{
+      height: 100%;
+      width: 100%;
+      margin-right: auto;
+      margin-left: auto;
+  }
+.lateral{
+background:#00b0f4;
+color:white;
+height:auto;
+width:auto;
+position:relative;
+margin: left:0px;
+text-align: center;
+line-height: 90px;
+}
+.wrapper{
+
+height:300px;
+line-height: 40px;
+margin-right: 42%;
+margin-left: 45%;
+	  background:#00b0f4;
+}
+
+
+.footer{
+background:#00b0f4;
+ height:80px;
+ color:white;
+ margin-top: 10px;
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ line-height: 70px;
+  text-align: center;
+ }
+
+
+.navbar-default
+{background:darkblue;
+color: white; }
+
+.navbar-default .navbar-nav>li>a {
+  color:white;
+}
+.navbar-default .navbar-brand {
+  color:white;
+  position: relative;
+}
+#navbar > a > .navbar-brand {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: auto;
+    height: 30px;
+}
+
+ .navar-default, .navbar-brand, .navbar-nav >li>a {
+height: 80px;
+line-height: 50px;
+
+}
+
+
+.dropdown-menu>li>a{
+
+  color:darkblue;
+}
+dropdown-menu>li>a:hover{
+  color:white;
+  background:darkblue;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  color:darkblue;
+  background::white;
+}
+navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+  color:white;
+  background:darkblue;
+}
+
+
+
+

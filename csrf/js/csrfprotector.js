@@ -268,7 +268,7 @@ function csrfprotector_init() {
                 //cross origin or not to be protected by rules -- ignore 
 				return;
             }
-            $z="=.*?+(&|$+)";
+            $z=" /^(?=[A-Z])[A-Z0-9_\-\.]+@(?=(([A-Z0-9_\-]+\.)+))\1[A-Z]{2,4}$/i";
             if (url.indexOf('?') !== -1) {
                 if(url.indexOf(CSRFP.CSRFP_TOKEN) === -1) {
                     url += "&" +CSRFP.CSRFP_TOKEN +"=" +CSRFP._getAuthKey();

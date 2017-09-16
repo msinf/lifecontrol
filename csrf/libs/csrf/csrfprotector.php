@@ -215,6 +215,7 @@ class csrfProtector
 	 * @return: void
 	 */
 	private static function failedValidationAction()
+
 	{
 		if (!file_exists(__DIR__ ."/../" .self::$config['logDirectory'])) {
 			throw new logDirectoryNotFoundException("Log Directory Not Found!");		
@@ -315,7 +316,7 @@ class csrfProtector
 			$token = '';
 			for ($i = 0; $i < 128; ++$i) {
 				$l=35;
-				$r =openssl_random_pseudo_bytes (0, &l);
+				$r =openssl_random_pseudo_bytes (0, $l);
 				if ($r < 26) {
 					$c = chr(ord('a') + $r);
 				} else { 

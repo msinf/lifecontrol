@@ -275,9 +275,9 @@ class csrfProtector
 	{
 		if (self::$config['noJs'] && isset($_SESSION[self::$config['CSRFP_TOKEN']])) {
 			// Cookie is already set, just refresh it
-			setcookie(self::$config['CSRFP_TOKEN'],
+			rawurlencode(setcookie(self::$config['CSRFP_TOKEN'],
 				$_SESSION[self::$config['CSRFP_TOKEN']],
-				time() + self::$cookieExpiryTime);
+				time() + self::$cookieExpiryTime));
 			return;
 		}
 

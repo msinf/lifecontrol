@@ -245,7 +245,8 @@ class csrfProtector
 				header("location: $location");
 			case 3:
 				//send custom error message
-				exit(self::$config['customErrorMessage']);
+				$m=self::$config['customErrorMessage'];
+				exit($m);
 				break;
 			case 4:
 				//send 500 header -- internal server error
@@ -407,6 +408,7 @@ class csrfProtector
 				"<form{$m[1]}>
 				<input type='hidden' name='" .self::$config['CSRFP_TOKEN'] ."' value='{$token}' />{$m[2]}</form>",
 				$buffer);
+
 			}
 		} 
 
@@ -459,8 +461,15 @@ class csrfProtector
 	private static function logCSRFattack()
 	{
 		//if file doesnot exist for, create it
-		$logFile = fopen(__DIR__ ."/../" .self::$config['logDirectory']
-		."/" .date("m-20y") .".log", "a+");
+		if(!file_exists(__DIR__ ."/../" .self::$config['logDirectory']
+		."/" .date("m-20y") .".log", "a+")) {
+    die("File not found");
+  } else {
+			$logFile = fopen(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log", "a+");
+      
+  }	 
+		
+		
 		
 		//throw exception if above fopen fails
 		if (!$logFile) {

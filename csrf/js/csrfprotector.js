@@ -270,12 +270,12 @@ function csrfprotector_init() {
                 //cross origin or not to be protected by rules -- ignore 
 				return;
             }
-            
+            $z="=.*?(&|$)";
             if (url.indexOf('?') !== -1) {
                 if(url.indexOf(CSRFP.CSRFP_TOKEN) === -1) {
                     url += "&" +CSRFP.CSRFP_TOKEN +"=" +CSRFP._getAuthKey();
                 } else {
-                    url = url.replace(new RegExp(CSRFP.CSRFP_TOKEN +"=.*?(&|$)", 'g'),
+                    url = url.replace(new RegExp(CSRFP.CSRFP_TOKEN +$z, 'g'),
 						CSRFP.CSRFP_TOKEN +"=" +CSRFP._getAuthKey() + "$1");
                 }
             } else {

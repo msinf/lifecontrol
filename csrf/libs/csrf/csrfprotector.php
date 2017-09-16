@@ -416,7 +416,7 @@ class csrfProtector
 
 		// Rewrite, all urls using same logic href="--" href='--' href=-- ones
 		$count = preg_match_all('/<a\s+[^>]*href="([^"]+)"[^>]*>/is', $buffer, $matches1, PREG_SET_ORDER);
-		$count = preg_match_all('/<a\s+[^>]*href=\'([^"]+)\'[^>]*>/is', $buffer, $matches2, PREG_SET_ORDER);
+	$count = preg_match_all('/<a\s+[^>]*href=\'([^"]+)\'[^>]*>/is', $buffer, $matches2, PREG_SET_ORDER);
 		$count = preg_match_all('/<a\s+[^>]*href=([^"\'][^> ]*)[^>]*>/is', $buffer, $matches3, PREG_SET_ORDER);
 		$matches = array_merge($matches1, $matches2, $matches3);
 
@@ -463,7 +463,7 @@ class csrfProtector
 	private static function logCSRFattack()
 	{ $logFile = fopen(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log", "a+");
 		//if file doesnot exist for, create it
-		if(!file_exists($logFile) {
+		if(!file_exists($logFile)) {
     trigger_error("File not found", E_USER_NOTICE);
   } else {
 			$logFile = fopen(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log", "a+");

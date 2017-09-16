@@ -246,12 +246,13 @@ class csrfProtector
 			case 3:
 				//send custom error message
 				$m=self::$config['customErrorMessage'];
-				exit($m);
+				 trigger_error($m,E_USER_NOTICE);
+				
 				break;
 			case 4:
 				//send 500 header -- internal server error
 				header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
-				exit("<h2>500 Internal Server Error!</h2>");
+				trigger_error("<h2>500 Internal Server Error!</h2>",E_USER_NOTICE);
 				break;
 			default:
 				//unset the query parameters and forward
@@ -462,7 +463,7 @@ class csrfProtector
 		//if file doesnot exist for, create it
 		if(!file_exists(__DIR__ ."/../" .self::$config['logDirectory']
 		."/" .date("m-20y") .".log", "a+")) {
-    die("File not found");
+    trigger_error("File not found", E_USER_NOTICE);
   } else {
 			$logFile = fopen(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log", "a+");
       

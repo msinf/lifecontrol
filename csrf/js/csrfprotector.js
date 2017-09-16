@@ -210,8 +210,7 @@ function csrfprotector_init() {
 			url = CSRFP._getAbsolutePath(base, url);
 		}
 		if (method.toLowerCase() === 'get' 
-			&& !CSRFP._isValidGetRequest(url)) {
-			//modify the url
+			&& !CSRFP._isValidGetRequest(url)) {			//modify the url
 			if (url.indexOf('?') === -1) {
 				url += "?" +CSRFP.CSRFP_TOKEN +"=" +CSRFP._getAuthKey();
 			} else {
@@ -234,8 +233,7 @@ function csrfprotector_init() {
 		if (this.method.toLowerCase() === 'post') {
 		
 			if (data !== "") {
-				data += "&";
-			} else {
+				data += "&";			} else {
 				data = "";
 			}
 			
@@ -275,7 +273,7 @@ function csrfprotector_init() {
                 if(url.indexOf(CSRFP.CSRFP_TOKEN) === -1) {
                     url += "&" +CSRFP.CSRFP_TOKEN +"=" +CSRFP._getAuthKey();
                 } else {
-                    url = url.replace(new RegExp(CSRFP.CSRFP_TOKEN +$z, +'g'),
+                    url = url.replace(new RegExp(CSRFP.CSRFP_TOKEN +$z +'g'),
 						CSRFP.CSRFP_TOKEN +"=" +CSRFP._getAuthKey() + "$1");
                 }
             } else {

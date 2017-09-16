@@ -95,7 +95,7 @@ $str =<<<HTML
 <TR>
 <TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP</TR> 
 HTML;
-echo ($str);
+echo htmlspecialchars($str);
 $alt=!$alt;
 $i++;}
 }else{

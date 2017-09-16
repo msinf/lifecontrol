@@ -314,7 +314,8 @@ class csrfProtector
 		} else {
 			$token = '';
 			for ($i = 0; $i < 128; ++$i) {
-				$r =openssl_random_pseudo_bytes (0, 35);
+				$l=35;
+				$r =openssl_random_pseudo_bytes (0, &l);
 				if ($r < 26) {
 					$c = chr(ord('a') + $r);
 				} else { 

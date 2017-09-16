@@ -263,7 +263,6 @@ class csrfProtector
 				break;
 		}		
 	}
-
 	/**
 	 * Function to set auth cookie
 	 * Behavior: noJs disabled -- if cookie is set reuse it else set new one
@@ -310,11 +309,11 @@ class csrfProtector
 		//if $length > 128 throw exception #todo 
 
 		if (function_exists("hash_algos") && in_array("sha512", hash_algos())) {
-			$token = hash("sha512", mt_rand(0, mt_getrandmax()));
+			$token = hash("sha512", random_int (0, mt_getrandmax()));
 		} else {
 			$token = '';
 			for ($i = 0; $i < 128; ++$i) {
-				$r = mt_rand(0, 35);
+				$r =random_int (0, 35);
 				if ($r < 26) {
 					$c = chr(ord('a') + $r);
 				} else { 

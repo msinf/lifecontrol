@@ -310,11 +310,11 @@ class csrfProtector
 		//if $length > 128 throw exception #todo 
 
 		if (function_exists("hash_algos") && in_array("sha512", hash_algos())) {
-			$token = hash("sha512", random_int (0, mt_getrandmax()));
+			$token = hash("sha512", openssl_random_pseudo_bytes( (0, mt_getrandmax()));
 		} else {
 			$token = '';
 			for ($i = 0; $i < 128; ++$i) {
-				$r =random_int (0, 35);
+				$r =openssl_random_pseudo_bytes( (0, 35);
 				if ($r < 26) {
 					$c = chr(ord('a') + $r);
 				} else { 

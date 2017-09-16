@@ -461,9 +461,9 @@ class csrfProtector
 	 * @throw: logFileWriteError
 	 */
 	private static function logCSRFattack()
-	{ $logFile = fopen(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log", "a+");
+	{ 
 		//if file doesnot exist for, create it
-		if(!file_exists($logFile)) {
+		if(!file_exists(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log")) {
     trigger_error("File not found", E_USER_NOTICE);
   } else {
 			$logFile = fopen(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log", "a+");

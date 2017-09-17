@@ -69,7 +69,7 @@
 if(!isset($_POST['submit'])){
 	header('Location:new_ut.html');
 }else{
-session_start();
+//session_start();
 $host='localhost'; // Host name 
 $username='root'; // Mysql username 
 $password=''; // Mysql password 
@@ -79,7 +79,7 @@ $tbl_name='utenti'; // Table name
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
 if(isset($link)){
-$usernamemysqli_real_escape_string($link,$_POST['id']);
+$username=mysqli_real_escape_string($link,$_POST['id']);
 $password=mysqli_real_escape_string($link,$_POST['pass']);
 $nome=mysqli_real_escape_string($link,$_POST['nome']);
 $via=mysqli_real_escape_string($link,$_POST['via']);

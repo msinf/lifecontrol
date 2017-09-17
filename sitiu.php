@@ -93,7 +93,7 @@ $str =<<<HTML
 <TR>
 <TD>$id<TD>$nome<TD>$impianto</TR> 
 HTML;
-echo htmlspecialchars($str);
+echo ($str);
 $alt=!$alt;
 $i++;}
 }else{

@@ -167,17 +167,18 @@ $tbl_name='impianti'; // Table name
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
 if(isset($link)){
-$sql='SELECT * FROM $tbl_name WHERE attivo=1;';
+$sql="SELECT * FROM $tbl_name WHERE attivo=1;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<TABLE><TR><TH>ID_impianto <TH> Nome <TH> Via <TH> Civico <TH> CAP<TH>Gestore<TH>Attivo</TR>
+<TABLE><TR><TH>ID_impianto <TH> Nome <TH> Via <TH> Civico <TH> CAP<TH>Gestore</TR>
 HTML;
 echo $str;
+$alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
-$riga = mysqli_fetch_array($result);	
+$riga =mysqli_fetch_array($result);	
 $id=htmlspecialchars($riga['id_impianto']);
 $nome=htmlspecialchars($riga['nome']);
 $via=htmlspecialchars($riga['via']);
@@ -190,34 +191,29 @@ $str =<<<HTML
 HTML;
 echo ($str);
 $alt=!$alt;
-$i++;
-}
-$str =<<<HTML
-</TR>
-HTML;
-echo $str;
+$i++;}
 }else{
 echo'QUERY FALLITA';}
-}else{
-echo 'cannot connect';}
+}else{ echo 'cannot connect';}
 
 ?>
 
+
 <?php
+
 $host='localhost'; // Host name 
 $username='root'; // Mysql username 
 $password=''; // Mysql password 
 $db_name='live'; // Database name 
 $tbl_name='siti'; // Table name 
-
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
 if(isset($link)){
-$sql='SELECT * FROM $tbl_name WHERE attivo=1;';
+$sql="SELECT * FROM $tbl_name  WHERE attivo=1;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<TABLE><TR><TH>ID_sito <TH> Nome <TH> Impianto<TH>Attivo</TR> 
+<TABLE><TR><TH>ID_sito <TH> Nome <TH> Impianto</TR> 
 HTML;
 echo $str;
 $alt=true;
@@ -228,18 +224,16 @@ $riga = mysqli_fetch_array($result);
 $id=htmlspecialchars($riga['id_sito']);
 $nome=htmlspecialchars($riga['nome']);
 $impianto=htmlspecialchars($riga['impianto']);
-$attivo=htmlspecialchars($riga['attivo']);
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$nome<TD>$impianto<TD>$attivo</TR> 
+<TD>$id<TD>$nome<TD>$impianto</TR> 
 HTML;
 echo ($str);
 $alt=!$alt;
 $i++;}
 }else{
-echo' QUERY FALLITA';}
-}else{
-echo 'cannot connect';}
+echo'QUERY FALLITA';}
+}else{ echo 'error connect';}
 ?>
 
 

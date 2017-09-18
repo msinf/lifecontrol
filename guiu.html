@@ -40,7 +40,6 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENÚ<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="index.html">La mia Dashboard</a></li>
                 <li><a href="chisiamo.html"> Chi siamo</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="mailto:livecontrolinfo@gmail.com">Contattaci</a></li>

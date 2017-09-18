@@ -33,13 +33,13 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
- <ul class="nav navbar-nav navbar-right">
+
+          <ul class="nav navbar-nav navbar-right">
             <li><a href="Home.html">HOME <span class="sr-only">(current)</span></a></li>
-            <li><a href="logout.php">LOGOUT</a></li>
+          <li><a href="logout.php">LOGOUT</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENÚ<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="index.html">La mia Dashboard</a></li>
                 <li><a href="chisiamo.html"> Chi siamo</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="mailto:livecontrolinfo@gmail.com">Contattaci</a></li>
@@ -81,14 +81,14 @@ $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
 $riga = mysqli_fetch_array($result);	
-$id=htmlspecialchars($riga['id_sito']);
-$nome=htmlspecialchars($riga['nome']);
-$impianto=htmlspecialchars($riga['impianto']);
+$id=htmlspecialchars(mysqli_real_escape_string($link,$riga['id_sito']));
+$nome=htmlspecialchars(mysqli_real_escape_string($link,$riga['nome']));
+$impianto=htmlspecialchars(mysqli_real_escape_string($link,$riga['impianto']));
 $str =<<<HTML
 <TR>
 <TD>$id<TD>$nome<TD>$impianto</TR> 
 HTML;
-echo htmlspecialchars($str);
+echo ($str);
 $alt=!$alt;
 $i++;}
 }else{

@@ -33,13 +33,13 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
- <ul class="nav navbar-nav navbar-right">
+
+          <ul class="nav navbar-nav navbar-right">
             <li><a href="Home.html">HOME <span class="sr-only">(current)</span></a></li>
             <li><a href="logout.php">LOGOUT</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENÚ<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="index.html">La mia Dashboard</a></li>
                 <li><a href="chisiamo.html"> Chi siamo</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="mailto:livecontrolinfo@gmail.com">Contattaci</a></li>
@@ -80,17 +80,17 @@ $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
 $riga = mysqli_fetch_array($result);
-$id=htmlspecialchars($riga['sensore']);
-$valore=htmlspecialchars($riga['valore']);
-$data=htmlspecialchars($riga['data']);
-$ora=htmlspecialchars($riga['ora']);
-$desc=htmlspecialchars($riga['descrizione']);
-$tipo=htmlspecialchars($riga['nome']);
+$id=htmlspecialchars(mysqli_real_escape_string($link,$riga['sensore']));
+$valore=htmlspecialchars(mysqli_real_escape_string($link,$riga['valore']));
+$data=htmlspecialchars(mysqli_real_escape_string($link,$riga['data']));
+$ora=htmlspecialchars(mysqli_real_escape_string($link,$riga['ora']));
+$desc=htmlspecialchars(mysqli_real_escape_string($link,$riga['descrizione']));
+$tipo=htmlspecialchars(mysqli_real_escape_string($link,$riga['nome']));
 $str =<<<HTML
 <TR>
 <TD>$id<TD>$valore<TD>$data<TD>$ora<TD>$desc<TD>$tipo</TR> 
 HTML;
-echo htmlspecialchars($str);
+echo ($str);
 $alt=!$alt;
 $i++;}
 }else{

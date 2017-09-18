@@ -39,19 +39,14 @@
             <li><a href="logout.php">LOGOUT</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENÚ<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <<li> <a href="sensori.php">Sensori</a></li>
-				   <li role="separator" class="divider"></li>
-				 <li> <a href="utenti.php">Utenti</a></li>
-				  <li role="separator" class="divider"></li>
-				 <li> <a href="ambienti.php">Impianti</a></li>
-				  <li role="separator" class="divider"></li>
-				 <li> <a href="siti.php">Siti</a></li>
-				  <li role="separator" class="divider"></li>
-				 <li> <a href="marche.php">Marche</a></li>
+               <ul class="dropdown-menu">
+                <li><a href="chisiamo.html"> Chi siamo</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="mailto:livecontrolinfo@gmail.com">Contattaci</a></li>
+                <li role="separator" class="divider"></li>
               </ul>
             </li>
-       </ul>
+          </ul>
 
 
 
@@ -86,17 +81,17 @@ $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
 $riga =mysqli_fetch_array($result);	
-$id=htmlspecialchars($riga['id_impianto']);
-$nome=htmlspecialchars($riga['nome']);
-$via=htmlspecialchars($riga['via']);
-$civico=htmlspecialchars($riga['n_civico']);
-$CAP=htmlspecialchars($riga['CAP']);
-$gest=htmlspecialchars($riga['gestore']);
+$id=htmlspecialchars(mysqli_real_escape_string($link,$riga['id_impianto']));
+$nome=htmlspecialchars(mysqli_real_escape_string($link,$riga['nome']));
+$via=htmlspecialchars(mysqli_real_escape_string($link,$riga['via']));
+$civico=htmlspecialchars(mysqli_real_escape_string($link,$riga['n_civico']));
+$CAP=htmlspecialchars(mysqli_real_escape_string($link,$riga['CAP']));
+$gest=htmlspecialchars(mysqli_real_escape_string($link,$riga['gestore']));
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$gest</TR> 
+<TD> $id <TD>$nome <TD> $via <TD> $civico <TD> $CAP <TD> $gest</TR> 
 HTML;
-echo htmlspecialchars($str);
+echo ($str);
 $alt=!$alt;
 $i++;}
 }else{

@@ -34,7 +34,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-           <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right">
             <li><a href="Home.html">HOME <span class="sr-only">(current)</span></a></li>
             <li><a href="login.php">LOGIN</a></li>
             <li class="dropdown">
@@ -64,51 +64,39 @@ $host='localhost'; // Host name
 $username='root'; // Mysql username 
 $password=''; // Mysql password 
 $db_name='live'; // Database name 
-$tbl_name='impianti'; // Table name 
-
+$tbl_name='dati'; // Table name 
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
-$id=mysqli_real_escape_string($link,$_SESSION['username']);
 if(isset($link)){
-$sql="SELECT * FROM $tbl_name  WHERE attivo=1 AND gestore='$id' ;";
+$id=mysqli_real_escape_string($link,$_SESSION['username']);
+$sql="SELECT d.sensore, d.valore, d.data,d.ora,d.descrizione,f.nome FROM $tbl_name d,sensori s,siti t,impianti i,tipi f  WHERE s.tipo=f.id_tipo AND d.sensore=s.id_sensore AND s.sito=t.id_sito AND t.impianto=i.id_impianto AND i.gestore='$id' ;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<TABLE><TR><TH>ID_impianto <TH> Nome <TH> Via <TH> Civico <TH> CAP</TR>
+<TABLE><TR><TH>Sensore <TH> Valore <TH> Data <TH> Ora <TH> Descrizione<TH> Tipo</TR>
 HTML;
 echo $str;
 $alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
-
-$riga =mysqli_fetch_array($result);	
-
-$id=htmlspecialchars($riga['id_impianto']);
-
-$nome=htmlspecialchars($riga['nome']);
-
-$via=htmlspecialchars($riga['via']);
-
-$civico=htmlspecialchars($riga['n_civico']);
-
-$CAP=htmlspecialchars($riga['CAP']);
-
-$gest=htmlspecialchars($riga['gestore']);
-
+$riga = mysqli_fetch_array($result);
+$id=htmlspecialchars($riga['sensore']);
+$valore=htmlspecialchars($riga['valore']);
+$data=htmlspecialchars($riga['data']);
+$ora=htmlspecialchars($riga['ora']);
+$desc=htmlspecialchars($riga['descrizione']);
+$tipo=htmlspecialchars($riga['nome']);
 $str =<<<HTML
-
 <TR>
-
-<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$gest</TR> 
-
+<TD>$id<TD>$valore<TD>$data<TD>$ora<TD>$desc<TD>$tipo</TR> 
 HTML;
 echo ($str);
 $alt=!$alt;
 $i++;}
 }else{
 echo'QUERY FALLITA';}
-}else{'CANNOT CONNECT';}
+}else{echo 'cannot connect';}
 
 ?>
 

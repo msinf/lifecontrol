@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
  <ul class="nav navbar-nav navbar-right">
             <li><a href="Home.html">HOME <span class="sr-only">(current)</span></a></li>
-            <li><a href="login.php">LOGIN</a></li>
+            <li><a href="logout.php">LOGOUT</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENÚ<span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -90,7 +90,7 @@ $str =<<<HTML
 <TR>
 <TD>$id<TD>$valore<TD>$data<TD>$ora<TD>$desc<TD>$tipo</TR> 
 HTML;
-echo ($str);
+echo htmlspecialchars($str);
 $alt=!$alt;
 $i++;}
 }else{

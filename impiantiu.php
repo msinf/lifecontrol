@@ -31,7 +31,7 @@
           <a class="navbar-brand" <a href="Home.html"> <img src="immagini/lclogo.png"  height="50" width="150" alt="Brand" ></a></a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
+      <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
           <ul class="nav navbar-nav navbar-right">
@@ -91,7 +91,7 @@ $str =<<<HTML
 <TR>
 <TD> $id <TD>$nome <TD> $via <TD> $civico <TD> $CAP <TD> $gest</TR> 
 HTML;
-echo ($str);
+echo htmlspecialchars($str);
 $alt=!$alt;
 $i++;}
 }else{

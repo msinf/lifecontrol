@@ -85,12 +85,12 @@ $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
 $riga = mysqli_fetch_array($result);
-$id=mysqli_real_escape_string($link,$riga['sensore']);
-$valore=mysqli_real_escape_string($link,$riga['valore']);
-$data=mysqli_real_escape_string($link,$riga['data']);
-$ora=mysqli_real_escape_string($link,$riga['ora']);
-$desc=mysqli_real_escape_string($link,$riga['descrizione']);
-$tipo=mysqli_real_escape_string($link,$riga['nome']);
+$id=htmlspecialchars($riga['sensore']);
+$valore=htmlspecialchars($riga['valore']);
+$data=htmlspecialchars($riga['data']);
+$ora=htmlspecialchars($riga['ora']);
+$desc=htmlspecialchars($riga['descrizione']);
+$tipo=htmlspecialchars($riga['nome']);
 $str =<<<HTML
 <TR>
 <TD>$id<TD>$valore<TD>$data<TD>$ora<TD>$desc<TD>$tipo</TR> 

@@ -36,15 +36,19 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li><a href="Home.html">HOME <span class="sr-only">(current)</span></a></li>
-            <li><a href="login.php">LOGIN</a></li>
+            <li><a href="logout.php">LOGOUT</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENÚ<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="index.html">La mia Dashboard</a></li>
-                <li><a href="chisiamo.html"> Chi siamo</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="mailto:livecontrolinfo@gmail.com">Contattaci</a></li>
-                <li role="separator" class="divider"></li>
+                <<li> <a href="sensori.php">Sensori</a></li>
+				   <li role="separator" class="divider"></li>
+				 <li> <a href="utenti.php">Utenti</a></li>
+				  <li role="separator" class="divider"></li>
+				 <li> <a href="ambienti.php">Impianti</a></li>
+				  <li role="separator" class="divider"></li>
+				 <li> <a href="siti.php">Siti</a></li>
+				  <li role="separator" class="divider"></li>
+				 <li> <a href="marche.php">Marche</a></li>
               </ul>
             </li>
           </ul>
@@ -56,50 +60,50 @@
     </nav>
 
   <div class="container">
-
   <a href='guiu.html'><img src='immagini/home.png' height='30' width='25'>				</a>
+
 <?php
 session_start();
 $host='localhost'; // Host name 
 $username='root'; // Mysql username 
 $password=''; // Mysql password 
 $db_name='live'; // Database name 
-$tbl_name='dati'; // Table name 
+$tbl_name='impianti'; // Table name 
+
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
-if(isset($link)){
 $id=mysqli_real_escape_string($link,$_SESSION['username']);
-$sql="SELECT d.sensore, d.valore, d.data,d.ora,d.descrizione,f.nome FROM $tbl_name d,sensori s,siti t,impianti i,tipi f  WHERE s.tipo=f.id_tipo AND d.sensore=s.id_sensore AND s.sito=t.id_sito AND t.impianto=i.id_impianto AND i.gestore='$id' ;";
+if(isset($link)){
+$sql="SELECT * FROM $tbl_name  WHERE attivo=1 AND gestore='$id' ;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<TABLE><TR><TH>Sensore <TH> Valore <TH> Data <TH> Ora <TH> Descrizione<TH> Tipo</TR>
+<TABLE><TR><TH>ID_impianto <TH> Nome <TH> Via <TH> Civico <TH> CAP<TH>Gestore</TR>
 HTML;
 echo $str;
 $alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
-$riga = mysqli_fetch_array($result);
-$id=htmlspecialchars($riga['sensore']);
-$valore=htmlspecialchars($riga['valore']);
-$data=htmlspecialchars($riga['data']);
-$ora=htmlspecialchars($riga['ora']);
-$desc=htmlspecialchars($riga['descrizione']);
-$tipo=htmlspecialchars($riga['nome']);
+$riga =mysqli_fetch_array($result);	
+$id=htmlspecialchars($riga['id_impianto']);
+$nome=htmlspecialchars($riga['nome']);
+$via=htmlspecialchars($riga['via']);
+$civico=htmlspecialchars($riga['n_civico']);
+$CAP=htmlspecialchars($riga['CAP']);
+$gest=htmlspecialchars($riga['gestore']);
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$valore<TD>$data<TD>$ora<TD>$desc<TD>$tipo</TR> 
+<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$gest</TR> 
 HTML;
 echo ($str);
 $alt=!$alt;
 $i++;}
 }else{
 echo'QUERY FALLITA';}
-}else{echo 'cannot connect';}
+}else{ echo 'cannot connect';}
 
 ?>
-
 
 </div>
 <footer class="footer">
@@ -116,4 +120,3 @@ echo'QUERY FALLITA';}
 </html>
 
 <html>
-

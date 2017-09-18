@@ -51,7 +51,7 @@
 				 <li> <a href="marche.php">Marche</a></li>
               </ul>
             </li>
-          </ul>
+       </ul>
 
 
 
@@ -86,17 +86,17 @@ $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
 $riga =mysqli_fetch_array($result);	
-$id=htmlspecialchars(mysqli_real_escape_string($link,$riga['id_impianto']));
-$nome=htmlspecialchars(mysqli_real_escape_string($link,$riga['nome']));
-$via=htmlspecialchars(mysqli_real_escape_string($link,$riga['via']));
-$civico=htmlspecialchars(mysqli_real_escape_string($link,$riga['n_civico']));
-$CAP=htmlspecialchars(mysqli_real_escape_string($link,$riga['CAP']));
-$gest=htmlspecialchars(mysqli_real_escape_string($link,$riga['gestore']));
+$id=htmlspecialchars($riga['id_impianto']);
+$nome=htmlspecialchars($riga['nome']);
+$via=htmlspecialchars($riga['via']);
+$civico=htmlspecialchars($riga['n_civico']);
+$CAP=htmlspecialchars($riga['CAP']);
+$gest=htmlspecialchars($riga['gestore']);
 $str =<<<HTML
 <TR>
 <TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$gest</TR> 
 HTML;
-echo ($str);
+echo htmlspecialchars($str);
 $alt=!$alt;
 $i++;}
 }else{

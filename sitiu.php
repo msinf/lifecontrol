@@ -86,9 +86,9 @@ $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
 $riga = mysqli_fetch_array($result);	
-$id=mysqli_real_escape_string($link,$riga['id_sito']);
-$nome=mysqli_real_escape_string($link,$riga['nome']);
-$impianto=mysqli_real_escape_string($link,$riga['impianto']);
+$id=htmlspecialchars($riga['id_sito']);
+$nome=htmlspecialchars($riga['nome']);
+$impianto=htmlspecialchars($riga['impianto']);
 $str =<<<HTML
 <TR>
 <TD>$id<TD>$nome<TD>$impianto</TR> 

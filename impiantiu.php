@@ -86,11 +86,11 @@ $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
 $riga = mysqli_fetch_array($result);	
-$id=mysqli_real_escape_string($link,$riga['id_impianto']);
-$nome=mysqli_real_escape_string($link,$riga['nome']);
-$via=mysqli_real_escape_string($link,$riga['via']);
-$civico=mysqli_real_escape_string($link,$riga['n_civico']);
-$CAP=mysqli_real_escape_string($link,$riga['CAP']);
+$id=htmlspecialchars($riga['id_impianto']);
+$nome=htmlspecialchars($riga['nome']);
+$via=htmlspecialchars($riga['via']);
+$civico=htmlspecialchars($riga['n_civico']);
+$CAP=htmlspecialchars($riga['CAP']);
 $str =<<<HTML
 <TR>
 <TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP</TR> 

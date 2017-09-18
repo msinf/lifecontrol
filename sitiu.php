@@ -81,14 +81,14 @@ $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
 $riga = mysqli_fetch_array($result);	
-$id=htmlspecialchars($riga['id_sito']);
-$nome=htmlspecialchars($riga['nome']);
-$impianto=htmlspecialchars($riga['impianto']);
+$id=htmlspecialchars(mysqli_real_escape_string($link,$riga['id_sito']));
+$nome=htmlspecialchars(mysqli_real_escape_string($link,$riga['nome']));
+$impianto=htmlspecialchars(mysqli_real_escape_string($link,$riga['impianto']));
 $str =<<<HTML
 <TR>
 <TD>$id<TD>$nome<TD>$impianto</TR> 
 HTML;
-echo htmlspecialchars($str);
+echo ($str);
 $alt=!$alt;
 $i++;}
 }else{

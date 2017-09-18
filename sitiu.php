@@ -42,7 +42,7 @@
               <ul class="dropdown-menu">
                 <li><a href="chisiamo.html"> Chi siamo</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="mailto:livecontrolinfo@gmail.com">Contattaci</a></li>
+              <li><a href="mailto:livecontrolinfo@gmail.com">Contattaci</a></li>
                 <li role="separator" class="divider"></li>
               </ul>
             </li>
@@ -88,7 +88,7 @@ $str =<<<HTML
 <TR>
 <TD>$id<TD>$nome<TD>$impianto</TR> 
 HTML;
-echo ($str);
+echo htmlspecialchars($str);
 $alt=!$alt;
 $i++;}
 }else{

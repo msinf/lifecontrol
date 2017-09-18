@@ -88,7 +88,7 @@ $str =<<<HTML
 <TR>
 <TD>$id<TD>$nome<TD>$impianto</TR> 
 HTML;
-echo ($str);
+echo htmlentities($str);
 $alt=!$alt;
 $i++;}
 }else{

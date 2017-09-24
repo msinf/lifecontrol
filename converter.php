@@ -173,6 +173,8 @@ header('Location:adattatore.html');
 }else{
 echo'QUERY FALLITA';}
 break;
+default:  
+      echo "Errore tipo sensore";
 }
 }else{
 echo 'cannot connect';}

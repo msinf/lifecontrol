@@ -83,7 +83,7 @@ $nuova=mysqli_real_escape_string($link,$_POST['npass']);
 $sql="UPDATE $tbl_name SET password= '$nuova' WHERE username='$id' AND password='$pass'" ;
 $result=mysqli_query($link,$sql);
 if(isset($result)){
-header('Location:guiu.php');
+header('Location:guiu.html');
 }else{
 echo'QUERY FALLITA';}
 }else{

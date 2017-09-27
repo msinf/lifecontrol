@@ -6,46 +6,29 @@
 //Please visit www.ebrueggeman.com for usage policy
 //and full documentation + examples
 ///////////////////////////////////////////////////////////
-//---------------user changeable defaults----------------/
-define('height', 300);
-define('width', 400);
-define('data_max_allowable', 9999999999999999);
-define('data_min_allowable', -9999999999999999);
-define('data_set_count', 0);
-//set to actual font heights and widths used
-define('title_char_width', 6);
-define('title_char_height', 12);
-define('text_width', 6);
-define('text_height', 12);
-define('data_value_text_width', 6);
-define('data_value_text_height', 12);
-//padding between axis and value displayed
-define('axis_value_padding', 5);
-//space b/t top of bar or center of point and data value
-define('data_value_padding', 5);
-	//default margin % of width / height
-define('x_axis_default_percent', 12);
-define('y_axis_default_percent', 8);
-//data point diameter in px
-define('data_point_width', 6);
-define('gradient_max', 200);
-define('range_divisor_factor', 25);
-define('multi_offset_two', 24);
-define('multi_offset_three', 15);
-define('multi_offset_four', 10);
-define('multi_offset_five', 9);
-define('color_darken_factor', 30);
-define('legend_text_width', 6);
-define('legend_max_chars', 15);
-define('legend_text_height', 12);
-define('legend_padding', 4);
-//padding between axis and value displayed
-define('graphScaleRange', 100);
-
-
 class PHPGraphLib {
-
-	
+	//---------------user changeable defaults----------------/
+	var $height = 300;
+	var $width = 400;
+	var $data_max_allowable = 9999999999999999;
+	var $data_min_allowable = -9999999999999999;
+	var $data_set_count = 0;
+	//set to actual font heights and widths used
+	var $title_char_width = 6;
+	var $title_char_height = 12;
+	var $text_width = 6;
+	var $text_height = 12;
+	var $data_value_text_width = 6;
+	var $data_value_text_height = 12;
+	//padding between axis and value displayed
+	var $axis_value_padding = 5;
+	//space b/t top of bar or center of point and data value
+	var $data_value_padding = 5; 
+	//default margin % of width / height
+	var $x_axis_default_percent = 12; 
+	var $y_axis_default_percent = 8;
+	//data point diameter in px
+	var $data_point_width = 6;
 	//user changeable default booleans (show element by default?)
 	var $bool_bar_outline = true;
 	var $bool_x_axis = true;
@@ -97,6 +80,7 @@ class PHPGraphLib {
 	var $gradient_color_1;
 	var $gradient_color_2;
 	var $gradient_color_array;
+	var $gradient_max = 200;
 	var $gradient_handicap;
 	//data vars
 	var $data_array;
@@ -137,15 +121,25 @@ class PHPGraphLib {
 	var $data_range_min;
 	var $top_margin = 0;
 	var $right_margin = 0;
+	var $range_divisor_factor = 25; //controls auto-adjusting grid interval
 	var $data_point_array;
 	//multiple dataset variables
 	var $bool_multi_offset = true;
+	var $multi_offset_two = 24; //percent of bar width
+	var $multi_offset_three = 15; //percent of bar width
+	var $multi_offset_four = 10; //percent of bar width
+	var $multi_offset_five = 9; //percent of bar width
 	var $multi_gradient_colors_1;
 	var $multi_gradient_colors_2;
 	var $multi_bar_colors;
+	var $color_darken_factor = 30;//percent decrease
 	//legend variables
 	var $bool_legend = false;
+	var $legend_text_width = 6; //in px...
+	var $legend_max_chars = 15; 
 	var $legend_total_chars; 
+	var $legend_text_height = 12;
+	var $legend_padding=4; //padding inside legend box
 	var $legend_width;
 	var $legend_height;
 	var $legend_x;
@@ -1122,14 +1116,6 @@ class PHPGraphLib {
 			case 'fuscia': return array(255,0,255); break;
 			case 'green':  return array(0,128,0); break;
 			case 'lime':   return array(0,255,0); break;
-			default:overten($color);
-				break;
-		}
-		$this->error[] = "Color name \"$color\" not recogized.";
-		return false;
-	}
-	function overten($color){
-		switch (strtolower($color)) {
 			case 'olive':  return array(128,128,0); break;
 			case 'yellow': return array(255,255,0); break;
 			case 'navy':   return array(0,0,128); break;	
@@ -1138,6 +1124,8 @@ class PHPGraphLib {
 			case 'aqua':   return array(0,255,255); break;	
 			default:break;
 		}
+		$this->error[] = "Color name \"$color\" not recogized.";
+		return false;
 	}
 	function allocateGradientColors($color1R, $color1G, $color1B, $rScale, $gScale, $bScale, $num, $data_set_num) {
 		//caluclate the colors used in our gradient and store them in array

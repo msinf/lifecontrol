@@ -29,7 +29,7 @@ $row = mysqli_fetch_assoc($result);
  $i++;}   
 //configure graph 
 $graph->addData($dataArray);
-$graph->setTitle('Sales by Group');
+$graph->setTitle('DATI');
 $graph->setGradient('lime', 'green');
 $graph->setBarOutlineColor('black');
 $graph->createGraph();

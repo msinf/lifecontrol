@@ -12,10 +12,10 @@ $tbl_name='dati'; // Table name
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
 if($link){
-$id=$_SESSION['username'];
-$data=$_POST['mydatetime'];
-$sito=$_POST['sito'];
-$imp=$_POST['impianto'];
+$id=mysqli_real_escape_string($link,$_SESSION['username']);
+$data=mysqli_real_escape_string($link,$_POST['mydatetime']);
+$sito=mysqli_real_escape_string($link,$_POST['sito']);
+$imp=mysqli_real_escape_string($link,$_POST['impianto']);
 $dataArray=array();
 $sql="SELECT valore,ora FROM $tbl_name d,sensori s,siti t,impianti i WHERE d.sensore=s.id_sensore AND s.sito=t.id_sito AND t.impianto=i.id_impianto AND i.gestore='$id' AND d.data='$data' AND i.id_impianto='$imp' AND t.id_sito='$sito' GROUP BY ora ;";
 $result=mysqli_query($link,$sql);

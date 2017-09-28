@@ -67,13 +67,13 @@ $tbl_name='impianti'; // Table name
 
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
-$id=mysqli_real_escape_string($link,$_SESSION['username']);
+$id=htmlspecialchars(mysqli_real_escape_string($link,$_SESSION['username']));
 if(isset($link)){
 $sql="SELECT * FROM $tbl_name  WHERE attivo=1 AND gestore='$id' ;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<TABLE><TR><TH>ID_impianto <TH> Nome <TH> Via <TH> Civico <TH> CAP<TH>Gestore</TR>
+<TABLE><TR><TH> ID_impianto <TH> Nome <TH> Via <TH> Civico <TH> CAP<TH>Gestore</TR>
 HTML;
 echo $str;
 $alt=true;
@@ -81,18 +81,17 @@ $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
 $riga =mysqli_fetch_array($result);
-$id=htmlspecialchars($riga['id_impianto']);
-$nome=htmlspecialchars($riga['nome']);
-$via=htmlspecialchars($riga['via']);
-$civico=htmlspecialchars($riga['n_civico']);
-$CAP=htmlspecialchars($riga['CAP']);
-$gest=htmlspecialchars($riga['gestore']);
+$id=htmlspecialchars(mysqli_real_escape_string($link,$riga['id_impianto']));
+$nome=htmlspecialchars(mysqli_real_escape_string($link,$riga['nome']));
+$via=htmlspecialchars(mysqli_real_escape_string($link,$riga['via']));
+$civico=htmlspecialchars(mysqli_real_escape_string($link,$riga['n_civico']));
+$CAP=htmlspecialchars(mysqli_real_escape_string($link,$riga['CAP']));
+$gest=htmlspecialchars(mysqli_real_escape_string($link,$riga['gestore']));
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$gest</TR>
+<TD> $id <TD> $nome <TD> $via <TD> $civico <TD> $CAP <TD> $gest</TR>
 HTML;
 echo ($str);
-
 $alt=!$alt;
 $i++;}
 }else{

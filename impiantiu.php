@@ -91,7 +91,7 @@ $str =<<<HTML
 <TR>
 <TD> $id <TD>$nome <TD> $via <TD> $civico <TD> $CAP <TD> $gest</TR> 
 HTML;
-echo html_entity_decode($str);
+echo htmlspecialchars_decode($str);
 $alt=!$alt;
 $i++;}
 }else{

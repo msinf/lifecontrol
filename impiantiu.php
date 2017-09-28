@@ -59,11 +59,11 @@
 
 <?php
 session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='impianti'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='impianti'; // Table name
 
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
@@ -80,18 +80,19 @@ $alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
-$riga =mysqli_fetch_array($result);	
-$id=htmlspecialchars(mysqli_real_escape_string($link,$riga['id_impianto']));
-$nome=htmlspecialchars(mysqli_real_escape_string($link,$riga['nome']));
-$via=htmlspecialchars(mysqli_real_escape_string($link,$riga['via']));
-$civico=htmlspecialchars(mysqli_real_escape_string($link,$riga['n_civico']));
-$CAP=htmlspecialchars(mysqli_real_escape_string($link,$riga['CAP']));
-$gest=htmlspecialchars(mysqli_real_escape_string($link,$riga['gestore']));
+$riga =mysqli_fetch_array($result);
+$id=htmlspecialchars($riga['id_impianto']);
+$nome=htmlspecialchars($riga['nome']);
+$via=htmlspecialchars($riga['via']);
+$civico=htmlspecialchars($riga['n_civico']);
+$CAP=htmlspecialchars($riga['CAP']);
+$gest=htmlspecialchars($riga['gestore']);
 $str =<<<HTML
 <TR>
-<TD> $id <TD>$nome <TD> $via <TD> $civico <TD> $CAP <TD> $gest</TR> 
+<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$gest</TR>
 HTML;
-echo htmlspecialchars_decode($str);
+echo ($str);
+
 $alt=!$alt;
 $i++;}
 }else{

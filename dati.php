@@ -59,15 +59,15 @@
   <a href='guiu.html'><img src='immagini/home.png' height='30' width='25'>				</a>
 <?php
 session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='dati'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='dati'; // Table name
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
 if(isset($link)){
-$id=mysqli_real_escape_string($link,$_SESSION['username']);
+$id=htmlspecialchars(mysqli_real_escape_string($link,$_SESSION['username']));
 $sql="SELECT d.sensore, d.valore, d.data,d.ora,d.descrizione,f.nome FROM $tbl_name d,sensori s,siti t,impianti i,tipi f  WHERE s.tipo=f.id_tipo AND d.sensore=s.id_sensore AND s.sito=t.id_sito AND t.impianto=i.id_impianto AND i.gestore='$id' ;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
@@ -86,10 +86,10 @@ $data=htmlspecialchars(mysqli_real_escape_string($link,$riga['data']));
 $ora=htmlspecialchars(mysqli_real_escape_string($link,$riga['ora']));
 $desc=htmlspecialchars(mysqli_real_escape_string($link,$riga['descrizione']));
 $tipo=htmlspecialchars(mysqli_real_escape_string($link,$riga['nome']));
-$str =htmlspecialchars(<<<HTML
+$str =<<<HTML
 <TR>
-<TD>$id<TD>$valore<TD>$data<TD>$ora<TD>$desc<TD>$tipo</TR> 
-HTML);
+<TD>$id<TD>$valore<TD>$data<TD>$ora<TD>$desc<TD>$tipo</TR>
+HTML;
 echo ($str);
 $alt=!$alt;
 $i++;}
@@ -115,4 +115,3 @@ echo'QUERY FALLITA';}
 </html>
 
 <html>
-

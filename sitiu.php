@@ -60,35 +60,35 @@
 
 <?php
 session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='siti'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='siti'; // Table name
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
-$id=mysqli_real_escape_string($link,$_SESSION['username']);
+$id=htmlspecialchars(mysqli_real_escape_string($link,$_SESSION['username']));
 if(isset($link)){
 $sql="SELECT id_sito, s.nome,impianto FROM $tbl_name s, impianti i  WHERE i.attivo AND s.attivo=1 AND i.gestore='$id' AND s.impianto=i.id_impianto;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<TABLE><TR><TH>ID_sito <TH> Nome Sito <TH> Impianto</TR>
+<TABLE><TR><TH>ID_sito <TH> Nome <TH> Impianto</TR>
 HTML;
 echo $str;
 $alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
-$riga = mysqli_fetch_array($result);	
+$riga = mysqli_fetch_array($result);
 $id=htmlentities($riga['id_sito']);
 $nome=htmlentities($riga['nome']);
 $impianto=htmlentities($riga['impianto']);
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$nome<TD>$impianto</TR> 
+<TD>$id<TD>$nome<TD>$impianto</TR>
 HTML;
-echo htmlentities($str);
+echo ($str);
 $alt=!$alt;
 $i++;}
 }else{

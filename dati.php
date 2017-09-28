@@ -88,9 +88,9 @@ $desc=htmlspecialchars(mysqli_real_escape_string($link,$riga['descrizione']));
 $tipo=htmlspecialchars(mysqli_real_escape_string($link,$riga['nome']));
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$valore<TD>$data<TD>$ora<TD>$desc<TD>$tipo</TR> 
+<TD>htmlspecialchars($id)<TD>htmlspecialchars($valore)<TD>htmlspecialchars($data)<TD>htmlspecialchars($ora)<TD>htmlspecialchars($desc)<TD>htmlspecialchars($tipo)</TR> 
 HTML;
-echo htmlspecialchars($str);
+echo ($str);
 $alt=!$alt;
 $i++;}
 }else{

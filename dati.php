@@ -86,10 +86,10 @@ $data=htmlspecialchars(mysqli_real_escape_string($link,$riga['data']));
 $ora=htmlspecialchars(mysqli_real_escape_string($link,$riga['ora']));
 $desc=htmlspecialchars(mysqli_real_escape_string($link,$riga['descrizione']));
 $tipo=htmlspecialchars(mysqli_real_escape_string($link,$riga['nome']));
-$str =<<<HTML
+$str =htmlspecialchars(<<<HTML
 <TR>
-<TD>htmlspecialchars($id)<TD>htmlspecialchars($valore)<TD>htmlspecialchars($data)<TD>htmlspecialchars($ora)<TD>htmlspecialchars($desc)<TD>htmlspecialchars($tipo)</TR> 
-HTML;
+<TD>$id<TD>$valore<TD>$data<TD>$ora<TD>$desc<TD>$tipo</TR> 
+HTML);
 echo ($str);
 $alt=!$alt;
 $i++;}

@@ -463,19 +463,19 @@ class csrfProtector
 	private static function logCSRFattack()
 	{ 
 		//if file doesnot exist for, create it
-		/*if(!file_exists(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log")) {
-    trigger_error("File not found", E_USER_NOTICE);
+		if(!file_exists(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log")) {
+   /* trigger_error("File not found", E_USER_NOTICE);
   } else {*/
 			$logFile = fopen(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log", "a+");
       
-  //}	 
+  }	 
 		
 		
 		
 		//throw exception if above fopen fails
-		if (!$logFile) {
+		/*if (!$logFile) {
 			throw new logFileWriteError("Unable to write to the log file");	
-		}
+		}*/
 
 		//miniature version of the log
 		$log = array();

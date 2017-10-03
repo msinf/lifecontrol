@@ -463,12 +463,12 @@ class csrfProtector
 	private static function logCSRFattack()
 	{ 
 		//if file doesnot exist for, create it
-		if(!file_exists(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log")) {
+		/*if(!file_exists(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log")) {
     trigger_error("File not found", E_USER_NOTICE);
-  } else {
+  } else {*/
 			$logFile = fopen(__DIR__ ."/../" .self::$config['logDirectory']."/" .date("m-20y") .".log", "a+");
       
-  }	 
+  //}	 
 		
 		
 		

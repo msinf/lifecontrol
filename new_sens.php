@@ -89,133 +89,19 @@
         </tr>
 		<tr>
           <td>Sito</td>
-          <td><input type="text" name="sito" size="40">
-          </td>
-        </tr>
-		 <tr>
-          <td>Marca</td>
-		  <td> 
-		<input type="text" name="marca" size="40">
-          </td>
-        </tr>
-		<tr>
-		<td></td>
-          <td align="left"><input type="submit" 
-          name="cancella" value="cancella"></td>
-          <td></td>
-          <td align="right"><input type="submit" 
-          name="submit" value="Sent"></td>
-          
-        </tr>
-        </form>
-        </table>
-      </td>
-    </tr>
-</table>
-
+          <td>
 <?php
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='marche'; // Table name 
-
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='siti'; // Table name
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
 if(isset($link)){
-$sql="SELECT * FROM $tbl_name;";
+$sql="SELECT id_sito,nome FROM $tbl_name  WHERE attivo=1;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
-$str =<<<HTML
-<TABLE><TR><TH>ID Marca <TH> Nome</TR>
-HTML;
-echo $str;
-$alt=true;
-$number = mysqli_num_rows($result);
-$i=0;
-while($number>$i){
-$riga =mysqli_fetch_array($result);	
-$id=htmlspecialchars($riga['id_marca']);
-$nome=htmlspecialchars($riga['nome']);
-$str =<<<HTML
-<TR>
-<TD>$id<TD>$nome</TR> 
-HTML;
-echo ($str);
-
-$alt=!$alt;
-$i++;
-}
-
-$str =<<<HTML
-</TR>
-HTML;
-echo $str;
-}else{
-echo'QUERY FALLITA';}
-}else{
-echo 'cannot connect';}
-?>
-
-<?php
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='impianti'; // Table name 
-
-// Connect to server and select databse.
-$link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
-if(isset($link)){
-$sql="SELECT * FROM $tbl_name WHERE attivo=1;";
-$result=mysqli_query($link,$sql);
-if(isset($result)){
-$str =<<<HTML
-<TABLE><TR><TH>ID_impianto <TH> Nome <TH> Via <TH> Civico <TH> CAP<TH>Gestore</TR>
-HTML;
-echo $str;
-$alt=true;
-$number = mysqli_num_rows($result);
-$i=0;
-while($number>$i){
-$riga =mysqli_fetch_array($result);	
-$id=htmlspecialchars($riga['id_impianto']);
-$nome=htmlspecialchars($riga['nome']);
-$via=htmlspecialchars($riga['via']);
-$civico=htmlspecialchars($riga['n_civico']);
-$CAP=htmlspecialchars($riga['CAP']);
-$gest=htmlspecialchars($riga['gestore']);
-$str =<<<HTML
-<TR>
-<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$gest</TR> 
-HTML;
-echo ($str);
-$alt=!$alt;
-$i++;}
-}else{
-echo'QUERY FALLITA';}
-}else{ echo 'cannot connect';}
-
-?>
-
-
-<?php
-
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='siti'; // Table name 
-// Connect to server and select databse.
-$link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
-if(isset($link)){
-$sql="SELECT * FROM $tbl_name  WHERE attivo=1;";
-$result=mysqli_query($link,$sql);
-if(isset($result)){
-$str =<<<HTML
-<TABLE><TR><TH>ID_sito <TH> Nome <TH> Impianto</TR> 
-HTML;
-echo $str;
 $alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
@@ -223,10 +109,8 @@ while($number>$i){
 $riga = mysqli_fetch_array($result);
 $id=htmlspecialchars($riga['id_sito']);
 $nome=htmlspecialchars($riga['nome']);
-$impianto=htmlspecialchars($riga['impianto']);
 $str =<<<HTML
-<TR>
-<TD>$id<TD>$nome<TD>$impianto</TR> 
+$nome <input type="radio" name="sito" value='$id'/>
 HTML;
 echo ($str);
 $alt=!$alt;
@@ -235,19 +119,63 @@ $i++;}
 echo'QUERY FALLITA';}
 }else{ echo 'error connect';}
 ?>
+          </td>
+        </tr>
+		 <tr>
+                    <td>Marca</td>
+		  <td>
+		<?php
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='marche'; // Table name
+// Connect to server and select databse.
+$link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
+if(isset($link)){
+$sql="SELECT id_marca,nome FROM $tbl_name  WHERE nome IS NOT NULL";
+$result=mysqli_query($link,$sql);
+if(isset($result)){
+$alt=true;
+$number = mysqli_num_rows($result);
+$i=0;
+while($number>$i){
+$riga = mysqli_fetch_array($result);
+$id2=htmlspecialchars($riga['id_marca']);
+$nome2=htmlspecialchars($riga['nome']);
+$str =<<<HTML
+$nome2 <input type="radio" name="marca" value='$id2'/>
+HTML;
+echo ($str);
+$alt=!$alt;
+$i++;}
+}else{
+echo'QUERY FALLITA';}
+}else{ echo 'error connect';}
+?>
+          </td>
+        </tr>
+		<tr>
+		<td></td>
+          <td align="left"><input type="reset"
+          name="cancella" value="cancella"></td>
+          <td></td>
+          <td align="right"><input type="submit"
+          name="submit" value="Sent"></td>
+
+        </tr>
+        </form>
+        </table>
+      </td>
+    </tr>
+</table>
+
+
+
 
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
+  
 </body>
 </html>
-

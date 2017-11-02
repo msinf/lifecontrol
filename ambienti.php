@@ -64,11 +64,11 @@
 
 <?php
 session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='impianti'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='impianti'; // Table name
 
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
@@ -77,17 +77,16 @@ $sql="SELECT * FROM $tbl_name WHERE attivo=1;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<TABLE><TR><TH><li><a href='agg_imp.php'><img src='immagini/aggiungi.jpg' height='30' width='25'>				</a><TH>
-<a href='mod_imp.php'><img src='immagini/modifica.jpg' height='30' width='25' >				</a><TH>
+<a href='agg_imp.php'><img src='immagini/aggiungi.jpg' height='30' width='25'>				</a><TH>
 <a href='canc_imp.php'><img src='immagini/elimina.png' height='30' width='30' name='elimina'></a></li></TR>
-<TABLE><TR><TH>ID_impianto <TH> Nome <TH> Via <TH> Civico <TH> CAP<TH>Gestore</TR>
+<TABLE border='3'><TR><TH>ID_impianto <TH> Nome <TH> Via <TH> Civico <TH> CAP<TH>Gestore</TR>
 HTML;
 echo $str;
 $alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
-$riga =mysqli_fetch_array($result);	
+$riga =mysqli_fetch_array($result);
 $id=htmlspecialchars($riga['id_impianto']);
 $nome=htmlspecialchars($riga['nome']);
 $via=htmlspecialchars($riga['via']);
@@ -96,7 +95,7 @@ $CAP=htmlspecialchars($riga['CAP']);
 $gest=htmlspecialchars($riga['gestore']);
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$gest</TR> 
+<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$gest</TR>
 HTML;
 echo ($str);
 $alt=!$alt;
@@ -108,16 +107,7 @@ echo'QUERY FALLITA';}
 ?>
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
 

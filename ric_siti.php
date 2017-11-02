@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,6 +11,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -60,38 +62,68 @@
 
   <div class="container">
 
-<a href='marche.php'><img src='immagini/indietro.jpg' height='30' width='25'>				</a>
 <table border="0">
+<a href='siti.php'><img src='immagini/indietro.jpg' height='30' width='25'>				</a>
   <tr>
     <td align="center" ><strong>Inserisci i dati richiesti</strong></td>
   </tr>
   <tr>
     <td>
       <table>
-	  <form method="post" action="agg_marc.php">
+	  <form method="POST" action="canc_siti.php">
         <tr>
-          <td>ID Marca</td>
-          <td><input type="text" name="id" size="20">
+          <td>ID Sito: </td>
+          <td>
+<?php
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='siti'; // Table name
+// Connect to server and select databse.
+$link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
+if(isset($link)){
+$sql="SELECT id_sito FROM $tbl_name  WHERE attivo=1;";
+$result=mysqli_query($link,$sql);
+if(isset($result)){
+$alt=true;
+$number = mysqli_num_rows($result);
+$i=0;
+while($number>$i){
+$riga = mysqli_fetch_array($result);
+$id=htmlspecialchars($riga['id_sito']);
+$str =<<<HTML
+$id <input type="radio" name="id" value='$id'/>
+HTML;
+echo ($str);
+$alt=!$alt;
+$i++;}
+}else{
+echo'QUERY FALLITA';}
+}else{ echo 'error connect';}
+?>
           </td>
         </tr>
-          <td>Nome</td>
-          <td><input type="text" name="nome" size="40">
-          </td>
-        </tr>
-		<tr>
+        <tr>
 		<td></td>
           <td align="left"><input type="reset"
           name="cancella" value="cancella"></td>
           <td></td>
           <td align="right"><input type="submit"
           name="submit" value="Sent"></td>
+
+        </tr>
         </tr>
         </form>
         </table>
       </td>
     </tr>
 </table>
+
+
 </div>
 
 </body>
 </html>
+
+<html>

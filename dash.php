@@ -30,7 +30,7 @@ $row = mysqli_fetch_assoc($result);
 //configure graph 
 $graph->addData($dataArray);
 $graph->setTitle('DATI');
-$graph->setGradient('lime', 'green');
+$graph->setGradient('black', 'blue');
 $graph->setBarOutlineColor('black');
 $graph->createGraph();
 }else{

@@ -63,11 +63,11 @@
  <a href='guia.html'><img src='immagini/home.png' height='30' width='25'>				</a>
 <?php
 session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='utenti'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='utenti'; // Table name
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
 if(isset($link)){
@@ -75,8 +75,7 @@ $sql="SELECT * FROM $tbl_name WHERE password IS NOT NULL;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<li><a href='agg_ut.php'><img src='immagini/aggiungi.jpg' height='30' width='25'>				</a>
-<a href='mod_ut.php'><img src='immagini/modifica.jpg' height='30' width='25' >				</a>
+<a href='agg_ut.php'><img src='immagini/aggiungi.jpg' height='30' width='25'>				</a>
 <a href='canc_ut.php'><img src='immagini/elimina.png' height='30' width='30' name='elimina'></a></li>
 <TABLE border='3'><TR><TH>Username <TH> Nome <TH> Via <TH> Civico <TH> CAP<TH> Registrazione<TH> Ruolo</TR>
 HTML;
@@ -86,7 +85,7 @@ $alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
-$riga =mysqli_fetch_array($result);	
+$riga =mysqli_fetch_array($result);
 $id=htmlspecialchars($riga['username']);
 $nome=htmlspecialchars($riga['nome']);
 $via=htmlspecialchars($riga['via']);
@@ -96,7 +95,7 @@ $reg=htmlspecialchars($riga['registrazione']);
 $ruolo=htmlspecialchars($riga['ruolo']);
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$reg<TD>$ruolo</TR> 
+<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$reg<TD>$ruolo</TR>
 HTML;
 
 echo ($str);
@@ -108,16 +107,6 @@ echo'query fallita';}
 ?>
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
-

@@ -59,12 +59,12 @@
     </nav>
 
   <div class="container">
-  
+
 <a href='sensori.php'><img src='immagini/indietro.jpg' height='30' width='25'>				</a>
 
  <form method="post" action="sensori.php">
  <input type="radio" name="ciao" value="html" /> ciao
- <td align="right"><input type="submit" 
+ <td align="right"><input type="submit"
           name="submit" value="Sent"></td>
 </form>
 <form action="">
@@ -95,18 +95,18 @@
         </tr>
 		 <tr>
           <td>Marca</td>
-		  <td> 
+		  <td>
 		<input type="text" name="sito" size="40">
           </td>
         </tr>
 		<tr>
 		<td></td>
-          <td align="left"><input type="submit" 
+          <td align="left"><input type="reset"
           name="cancella" value="cancella"></td>
           <td></td>
-          <td align="right"><input type="submit" 
+          <td align="right"><input type="submit"
           name="submit" value="Sent"></td>
-          
+
         </tr>
         </form>
         </table>
@@ -118,16 +118,6 @@
 
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
-

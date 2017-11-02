@@ -70,18 +70,46 @@
       <table>
 	  <form method="POST" action="canc_marc.php">
         <tr>
-          <td>ID Marca</td>
-          <td><input type="text" name="id" size="20">
-          </td>
+          <td>ID Marca: </td>
+          <td><td>
+<?php
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='marche'; // Table name
+// Connect to server and select databse.
+$link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
+if(isset($link)){
+$sql="SELECT id_marca FROM $tbl_name  WHERE nome IS NOT NULL;";
+$result=mysqli_query($link,$sql);
+if(isset($result)){
+$alt=true;
+$number = mysqli_num_rows($result);
+$i=0;
+while($number>$i){
+$riga = mysqli_fetch_array($result);
+$id=htmlspecialchars($riga['id_marca']);
+$str =<<<HTML
+$id <input type="radio" name="id" value='$id'/>
+HTML;
+echo ($str);
+$alt=!$alt;
+$i++;}
+}else{
+echo'QUERY FALLITA';}
+}else{ echo 'error connect';}
+?>
+         </td> </td>
         </tr>
         <tr>
 		<td></td>
-          <td align="left"><input type="submit" 
+          <td align="left"><input type="reset"
           name="cancella" value="cancella"></td>
           <td></td>
-          <td align="right"><input type="submit" 
+          <td align="right"><input type="submit"
           name="submit" value="Sent"></td>
-          
+
         </tr>
         </tr>
         </form>
@@ -89,59 +117,13 @@
       </td>
     </tr>
 	<tr>
-	<?php
-session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='marche'; // Table name 
 
-// Connect to server and select databse.
-$link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
-if(isset($link)){
-$sql="SELECT * FROM $tbl_name WHERE nome IS NOT NULL;";
-$result=mysqli_query($link,$sql);
-if(isset($result)){
-$str =<<<HTML
-<TABLE><TR><TH>ID Marca <TH> Nome</TR> 
-HTML;
-echo $str;
-$alt=true;
-$number = mysqli_num_rows($result);
-$i=0;
-while($number>$i){
-$riga = mysqli_fetch_array($result);	
-$id=htmlspecialchars($riga['id_marca']);
-$nome=htmlspecialchars($riga['nome']);
-$str =<<<HTML
-<TR>
-<TD>$id<TD>$nome</TR> 
-HTML;
-echo ($str);
-$alt=!$alt;
-$i++;
-}
-}else{
-echo'QUERY FALLITA';}
-}else{
-echo 'cannot connect';}
-?>
 </tr>
 </table>
 
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
 

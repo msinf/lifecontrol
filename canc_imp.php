@@ -66,14 +66,14 @@
   <div class="container">
 <?php
 if(!isset($_POST['submit'])){
-	header('Location:ric_imp.html');
+	header('Location:ric_imp.php');
 }else{
 session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='impianti'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='impianti'; // Table name
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
 if(isset($link)){
@@ -81,11 +81,11 @@ $id=mysqli_real_escape_string($link,$_POST['id']);
 $sql="UPDATE $tbl_name SET attivo='0' WHERE  id_impianto='$id'" ;
 $result=mysqli_query($link,$sql);
 if(isset($result)){
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='siti'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='siti'; // Table name
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
 	if(isset($link)){
@@ -108,15 +108,6 @@ echo'QUERY FALLITA';}
 
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>

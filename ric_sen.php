@@ -61,86 +61,66 @@
 
   <div class="container">
 
-<table border="0">
 <a href='sensori.php'><img src='immagini/indietro.jpg' height='30' width='25'>				</a>
+<table border="0">
   <tr>
     <td align="center" ><strong>Inserisci i dati richiesti</strong></td>
   </tr>
   <tr>
     <td>
       <table>
-	  <form method="POST" action="canc_sen.php">
+	  <form method="post" action="canc_sen.php">
         <tr>
-          <td>ID Sensore</td>
-          <td><input type="text" name="id" size="20">
+          <td>Sito</td>
+          <td>
+<?php
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='sensori'; // Table name
+// Connect to server and select databse.
+$link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
+if(isset($link)){
+$sql="SELECT id_sensore FROM $tbl_name  WHERE attivo=1;";
+$result=mysqli_query($link,$sql);
+if(isset($result)){
+$alt=true;
+$number = mysqli_num_rows($result);
+$i=0;
+while($number>$i){
+$riga = mysqli_fetch_array($result);
+$id=htmlspecialchars($riga['id_sensore']);
+$str =<<<HTML
+$id <input type="radio" name="id" value='$id'/>
+HTML;
+echo ($str);
+$alt=!$alt;
+$i++;}
+}else{
+echo'QUERY FALLITA';}
+}else{ echo 'error connect';}
+?>
           </td>
         </tr>
         <tr>
 		<td></td>
-          <td align="left"><input type="submit" 
+          <td align="left"><input type="reset"
           name="cancella" value="cancella"></td>
           <td></td>
-          <td align="right"><input type="submit" 
+          <td align="right"><input type="submit"
           name="submit" value="Sent"></td>
-          
+
         </tr>
         </tr>
         </form>
         </table>
       </td>
     </tr>
-</table>
-<?php
-session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='sensori'; // Table name 
-// Connect to server and select databse.
-$link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
-if(isset($link)){
-$sql="SELECT * FROM $tbl_name WHERE attivo=1;";
-$result=mysqli_query($link,$sql);
-if(isset($result)){
-$str =<<<HTML
-<TABLE><TR><TH>ID sensore <TH> Tipo <TH> Marca <TH> Sito</TR> 
-HTML;
-echo $str;
-$alt=true;
-$number = mysqli_num_rows($result);
-$i=0;
-while($number>$i){
-$riga = (mysqli_fetch_array($result));	
-$id=htmlspecialchars($riga['id_sensore']);
-$tipo=htmlspecialchars($riga['tipo']);
-$marca=htmlspecialchars($riga['marca']);
-$sito=htmlspecialchars($riga['sito']);
-$str =<<<HTML
-<TR>
-<TD>$id<TD>$tipo<TD>$marca<TD>$sito</TR> 
-HTML;
-echo ($str);
-$alt=!$alt;
-$i++;
-}
-}else{
-echo'QUERY FALLITA';}
-}else{
-echo'cannot connect';}
-?>
+
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
 

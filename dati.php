@@ -57,6 +57,7 @@
   <div class="container">
 
   <a href='guiu.html'><img src='immagini/home.png' height='30' width='25'>				</a>
+  <input type="button" name="Submit" value="Stampa" onclick="window.print()"> 
 <?php
 session_start();
 $host='localhost'; // Host name
@@ -72,7 +73,7 @@ $sql="SELECT d.sensore, d.valore, d.data,d.ora,d.descrizione,f.nome FROM $tbl_na
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<TABLE><TR><TH>Sensore <TH> Valore <TH> Data <TH> Ora <TH> Descrizione<TH> Tipo</TR>
+<TABLE border='3'><TR><TH>Sensore <TH> Valore <TH> Data <TH> Ora <TH> Descrizione<TH> Tipo</TR>
 HTML;
 echo $str;
 $alt=true;
@@ -101,16 +102,7 @@ echo'QUERY FALLITA';}
 
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
 

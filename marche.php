@@ -64,11 +64,11 @@
 
 <?php
 session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='marche'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='marche'; // Table name
 
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
@@ -77,22 +77,21 @@ $sql="SELECT * FROM $tbl_name WHERE nome IS NOT NULL;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<li><a href='agg_marc.php'><img src='immagini/aggiungi.jpg' height='30' width='25'>				</a>
-<a href='mod_marc.php'><img src='immagini/modifica.jpg' height='30' width='25' >				</a>
+<a href='agg_marc.php'><img src='immagini/aggiungi.jpg' height='30' width='25'>				</a>
 <a href='canc_marc.php'><img src='immagini/elimina.png' height='30' width='30' name='elimina'></a></li>
-<TABLE><TR><TH>ID Marca <TH> Nome</TR> 
+<TABLE border='3'><TR><TH>ID Marca <TH> Nome</TR>
 HTML;
 echo $str;
 $alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
-$riga = mysqli_fetch_array($result);	
+$riga = mysqli_fetch_array($result);
 $id=htmlspecialchars($riga['id_marca']);
 $nome=htmlspecialchars($riga['nome']);
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$nome</TR> 
+<TD>$id<TD>$nome</TR>
 HTML;
 echo ($str);
 $alt=!$alt;
@@ -105,16 +104,7 @@ echo'cannot connect';}
 ?>
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
 

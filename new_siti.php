@@ -61,10 +61,8 @@
 
   <div class="container">
 
-<table border="0">
 <a href='siti.php'><img src='immagini/indietro.jpg' height='30' width='25'>				</a>
 
-<table border="0">
   <tr>
     <td align="center" ><strong>Inserisci i dati richiesti</strong></td>
   </tr>
@@ -83,79 +81,54 @@
           </td>
         </tr>
 		 <tr>
-          <td>Impianto</td>
-          <td><input type="text" name="imp" size="20">
-          </td>
-        </tr>
-		<td></td>
-          <td align="left"><input type="reset" 
-          name="cancella" value="cancella"></td>
-          <td></td>
-          <td align="right"><input type="submit" 
-          name="submit" value="Sent"></td>
-          
-        </tr>
-        </tr>
-        </form>
-        </table>
-		
+          <td>Impianto:  </td>
+          <td>
 <?php
-session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='impianti'; // Table name 
-
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='impianti'; // Table name
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
-if(isset($link)){ 
-$sql="SELECT * FROM $tbl_name WHERE attivo=1;";
+if(isset($link)){
+$sql="SELECT id_impianto,nome FROM $tbl_name  WHERE attivo=1;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
-$str =<<<HTML
-<TABLE><TR><TH>ID_impianto <TH> Nome <TH> Via <TH> Civico <TH> CAP<TH>Gestore<TH>Attivo</TR>
-HTML;
-echo $str;
 $alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
-$riga = mysqli_fetch_array($result);	
+$riga = mysqli_fetch_array($result);
 $id=htmlspecialchars($riga['id_impianto']);
 $nome=htmlspecialchars($riga['nome']);
-$via=htmlspecialchars($riga['via']);
-$civico=htmlspecialchars($riga['n_civico']);
-$CAP=htmlspecialchars($riga['CAP']);
-$gest=htmlspecialchars($riga['gestore']);
-$attivo=htmlspecialchars($riga['attivo']);
 $str =<<<HTML
-<TR>
-<TD>$id<TD>$nome<TD>$via<TD>$civico<TD>$CAP<TD>$gest<TD>$attivo</TR> 
+$nome <input type="radio" name="imp" value='$id'/>
 HTML;
-
 echo ($str);
 $alt=!$alt;
 $i++;}
 }else{
 echo'QUERY FALLITA';}
-}else{ echo' error connect';}
-
+}else{ echo 'error connect';}
 ?>
+         </td>
+        </tr>
+		<td></td>
+          <td align="left"><input type="reset"
+          name="cancella" value="cancella"></td>
+          <td></td>
+          <td align="right"><input type="submit"
+          name="submit" value="Sent"></td>
+
+        </tr>
+        </tr>
+        </form>
       </td>
     </tr>
 </table>
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
 

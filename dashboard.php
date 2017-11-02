@@ -65,30 +65,30 @@
 <form method="POST" action="dash.php">
 <tr>
 	<td>
-	
+
      <input type="date" name="mydatetime">
 	 </td>
- </tr> <table> 
+ </tr> <table>
 <tr>
 	<td> Sito:</td>
 	<td>
         <input type="text" name="sito">
-     </td> 
+     </td>
 </tr>
 <tr>
 	<td>Impianto:</td>
 	<td>
         <input type="text" name="impianto">
-     </td> 
+     </td>
 </tr>
-		
+
 		<td></td>
-          <td align="left"><input type="reset" 
+          <td align="left"><input type="reset"
           name="cancella" value="cancella"></td>
           <td></td>
-          <td align="right"><input type="submit" 
+          <td align="right"><input type="submit"
           name="submit" value="Sent"></td>
-          
+
         </tr>
         </tr>
         </form>
@@ -99,16 +99,7 @@
 
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
 

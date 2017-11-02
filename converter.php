@@ -64,29 +64,29 @@
 <table border="0">
 <a href='guia.php'><img src='immagini/indietro.jpg' height='30' width='25'>				</a>
 
-		
+
 <?php
   include_once __DIR__ .'\csrf\libs\csrf\csrfprotector.php';
   csrfProtector::init();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='dati'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='dati'; // Table name
 
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
-if(isset($link)){ 
+if(isset($link)){
 $id=mysqli_real_escape_string($link,$_POST['id']);
 $str=mysqli_real_escape_string($link,$_POST['stringa']);
 $txt=mysqli_real_escape_string($link,$_POST['testo']);
 $s=$str{strlen($str)-1};
 switch($s){
 	case '1'://temperatura
-	$val=substr($str, 0, 3); 
-	$ora=substr($str, 3, 2); 
-	$min=substr($str, 5, 2); 
-	$sec=substr($str, 7, 2); 
+	$val=substr($str, 0, 3);
+	$ora=substr($str, 3, 2);
+	$min=substr($str, 5, 2);
+	$sec=substr($str, 7, 2);
 $sql="INSERT INTO dati (`sensore`, `valore`, `data`, `ora`, `descrizione`) VALUES ('$id', '$val', CURDATE(), '$ora:$min:$sec', '$txt')";
 $result=mysqli_query($link,$sql);
 	if(isset($result)){
@@ -95,46 +95,46 @@ header('Location:adattatore.html');
 echo'QUERY FALLITA';}
 	break;
 	case '2'://prossimità
-	$val=substr($str, 0, 3); 
-	$ora=substr($str, 3, 2); 
-	$min=substr($str, 5, 2); 
-	$sec=substr($str, 7, 2); 
+	$val=substr($str, 0, 3);
+	$ora=substr($str, 3, 2);
+	$min=substr($str, 5, 2);
+	$sec=substr($str, 7, 2);
 $sql="INSERT INTO dati (`sensore`, `valore`, `data`, `ora`, `descrizione`) VALUES ('$id', '$val', CURDATE(), '$ora:$min:$sec', '$txt')";
 $result=mysqli_query($link,$sql);
 	if(isset($result)){
 header('Location:adattatore.html');
 }else{
 echo'QUERY FALLITA';}
-	
+
 	break;
 	case '3'://forza
-	$val=substr($str, 0,4); 
+	$val=substr($str, 0,4);
 $sql="INSERT INTO dati (`sensore`, `valore`, `data`, `ora`, `descrizione`) VALUES ('$id', '$val', CURDATE(), CURTIME(), '$txt')";
 $result=mysqli_query($link,$sql);
 	if(isset($result)){
 header('Location:adattatore.html');
 }else{
 echo'QUERY FALLITA';}
-	
+
 break;
 case '4'://pressione
-	$val=substr($str, 0, 5); 
-	$ora=substr($str, 3, 2); 
-	$min=substr($str, 5, 2); 
-	$sec=substr($str, 7, 2); 
+	$val=substr($str, 0, 5);
+	$ora=substr($str, 3, 2);
+	$min=substr($str, 5, 2);
+	$sec=substr($str, 7, 2);
 $sql="INSERT INTO dati (`sensore`, `valore`, `data`, `ora`, `descrizione`) VALUES ('$id', '$val', CURDATE(), '$ora:$min:$sec', '$txt')";
 $result=mysqli_query($link,$sql);
 	if(isset($result)){
 header('Location:adattatore.html');
 }else{
 echo'QUERY FALLITA';}
-	
+
 break;
 case '5'://velocità
-	$val=substr($str, 5, 3); 
-	$ora=substr($str, 0, 2); 
-	$min=substr($str, 2, 2); 
-	$sec=substr($str, 5, 2); 
+	$val=substr($str, 5, 3);
+	$ora=substr($str, 0, 2);
+	$min=substr($str, 2, 2);
+	$sec=substr($str, 5, 2);
 $sql="INSERT INTO dati (`sensore`, `valore`, `data`, `ora`, `descrizione`) VALUES ('$id', '$val', CURDATE(), '$ora:$min:$sec', '$txt')";
 $result=mysqli_query($link,$sql);
 	if(isset($result)){
@@ -143,7 +143,7 @@ header('Location:adattatore.html');
 echo'QUERY FALLITA';}
 break;
 case '6'://peso
-	$val=substr($str, 0, 3); 
+	$val=substr($str, 0, 3);
 $sql="INSERT INTO dati (`sensore`, `valore`, `data`, `ora`, `descrizione`) VALUES ('$id', '$val', CURDATE(), CURTIME(), '$txt')";
 $result=mysqli_query($link,$sql);
 	if(isset($result)){
@@ -151,8 +151,8 @@ header('Location:adattatore.html');
 }else{
 echo'QUERY FALLITA';}
 break;
-case '7'://direzione 
-	$val=substr($str, 0, 2); 
+case '7'://direzione
+	$val=substr($str, 0, 2);
 $sql="INSERT INTO dati (`sensore`, `valore`, `data`, `ora`, `descrizione`) VALUES ('$id', '$val', CURDATE(), CURTIME(), '$txt')";
 $result=mysqli_query($link,$sql);
 	if(isset($result)){
@@ -161,10 +161,10 @@ header('Location:adattatore.html');
 echo'QUERY FALLITA';}
 break;
 case '8'://luminosità
-	$val=substr($str, 0, 2); 
-	$ora=substr($str, 3, 2); 
-	$min=substr($str, 6, 2); 
-	$sec=substr($str, 7, 2); 
+	$val=substr($str, 0, 2);
+	$ora=substr($str, 3, 2);
+	$min=substr($str, 6, 2);
+	$sec=substr($str, 7, 2);
 
 $sql="INSERT INTO dati (`sensore`, `valore`, `data`, `ora`, `descrizione`) VALUES ('$id', '$val', CURDATE(), '$ora:$min:$sec', '$txt')";
 $result=mysqli_query($link,$sql);
@@ -173,27 +173,17 @@ header('Location:adattatore.html');
 }else{
 echo'QUERY FALLITA';}
 break;
-default:  
+default:
       echo "Errore tipo sensore";
 }
 }else{
 echo 'cannot connect';}
 ?>
-		
+
       </td>
     </tr>
 </table>
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
-

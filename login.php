@@ -54,35 +54,31 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-<ul class="wrapper">
+
 
 
 <form name="form_login" method="post" action="checklogin.php">
-	<div id="app-title">
-				<h1><strong>Login</strong></h1>
-			</div>
-	<div id="control-group">
-	<input type="text" class="login-field" value="" placeholder="username" id="login-name" name="myusername" >
-	</div>
-	<div id="control-group">
-	<input type="password" class="login-field" value="" placeholder="password" id="login-pass" name="mypassword">
-	</div>
-	<input type="submit" class="btn "href="#" value="login">
-	<a class="login-link" href="#">Lost your password?</a>
-	</form>
+<div class="imgcontainer">
+    <img src="immagini/avatar.png" alt="Avatar" class="avatar">
+  </div>
+	<div class="container">
+    <label><b>Username</b></label>
+   <input type="text" class="login-field" value="" placeholder="username" id="login-name" name="myusername" >
 
-</ul>
+    <label><b>Password</b></label>
+   <input type="password" class="login-field" value="" placeholder="password" id="login-pass" name="mypassword">
 
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″
-   </a>
- </p>
+    <button type="submit">Login</button>
+    <input type="checkbox" checked="checked"> Remember me
   </div>
 
-</footer>
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="reset" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+
+
 
   </body>
 </html>

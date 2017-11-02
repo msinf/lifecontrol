@@ -57,6 +57,7 @@
   <div class="container">
 
   <a href='guiu.html'><img src='immagini/home.png' height='30' width='25'>				</a>
+  <input type="button" name="Submit" value="Stampa" onclick="window.print()"> 
 
 <?php
 session_start();
@@ -73,7 +74,7 @@ $sql="SELECT id_sito, s.nome,impianto FROM $tbl_name s, impianti i  WHERE i.atti
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<TABLE><TR><TH>ID_sito <TH> Nome <TH> Impianto</TR>
+<TABLE border='3'><TR><TH>ID_sito <TH> Nome <TH> Impianto</TR>
 HTML;
 echo $str;
 $alt=true;
@@ -100,16 +101,6 @@ echo 'cannot connect';}
 
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
-
-</footer>
 </body>
 </html>
 

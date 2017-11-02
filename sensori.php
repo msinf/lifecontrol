@@ -64,11 +64,11 @@
 
 <?php
 session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='sensori'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='sensori'; // Table name
 
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
@@ -78,46 +78,32 @@ $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str ="
 <a href='agg_sens.php'><img src='immagini/aggiungi.jpg' height='30' width='25'>				</a>
-<a href='mod_sens.php'><img src='immagini/modifica.jpg' height='30' width='25'>				</a>
 <a href='canc_sen.php'><img src='immagini/elimina.png' height='30' width='30' name='elimina'></a>
-<TABLE><TR><TH>ID sensore <TH> Tipo <TH> Marca <TH> Sito</TR> ";
+<TABLE border='3'><TR><TH>ID sensore <TH> Tipo <TH> Marca <TH> Sito</TR> ";
 echo $str;
 $alt=true;
 $number = mysqli_num_rows($result);
 $i=0;
 while($number>$i){
-$riga = (mysqli_fetch_array($result));	
+$riga = (mysqli_fetch_array($result));
 $id=htmlspecialchars($riga['id_sensore']);
 $tipo=htmlspecialchars($riga['tipo']);
 $marca=htmlspecialchars($riga['marca']);
 $sito=htmlspecialchars($riga['sito']);
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$tipo<TD>$marca<TD>$sito</TR> 
+<TD>$id<TD>$tipo<TD>$marca<TD>$sito</TR>
 HTML;
 echo ($str);
 $alt=!$alt;
 $i++;
 }}else{
 echo 'QUERY FALLITA';}
-}else{ echo 'cannot connect';} 
+}else{ echo 'cannot connect';}
 ?>
 
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
-
-
-
-

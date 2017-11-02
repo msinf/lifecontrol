@@ -65,11 +65,11 @@
 
 <?php
 session_start();
-$host='localhost'; // Host name 
-$username='root'; // Mysql username 
-$password=''; // Mysql password 
-$db_name='live'; // Database name 
-$tbl_name='siti'; // Table name 
+$host='localhost'; // Host name
+$username='root'; // Mysql username
+$password=''; // Mysql password
+$db_name='live'; // Database name
+$tbl_name='siti'; // Table name
 
 // Connect to server and select databse.
 $link=mysqli_connect((string)$host,(string)$username,(string)$password,(string)$db_name);
@@ -78,10 +78,9 @@ $sql="SELECT * FROM $tbl_name  WHERE attivo=1;";
 $result=mysqli_query($link,$sql);
 if(isset($result)){
 $str =<<<HTML
-<li><a href='agg_siti.php'><img src='immagini/aggiungi.jpg' height='30' width='25'>				</a>
-<a href='mod_siti.php'><img src='immagini/modifica.jpg' height='30' width='25' >				</a>
+<a href='agg_siti.php'><img src='immagini/aggiungi.jpg' height='30' width='25'>				</a>
 <a href='canc_siti.php'><img src='immagini/elimina.png' height='30' width='30' name='elimina'></a></li>
-<TABLE><TR><TH>ID_sito <TH> Nome <TH> Impianto</TR> 
+<TABLE border='3'><TR><TH>ID_sito <TH> Nome <TH> Impianto</TR>
 HTML;
 echo $str;
 $alt=true;
@@ -94,7 +93,7 @@ $nome=htmlspecialchars($riga['nome']);
 $impianto=htmlspecialchars($riga['impianto']);
 $str =<<<HTML
 <TR>
-<TD>$id<TD>$nome<TD>$impianto</TR> 
+<TD>$id<TD>$nome<TD>$impianto</TR>
 HTML;
 echo ($str);
 $alt=!$alt;
@@ -108,16 +107,7 @@ echo'QUERY FALLITA';}
 
 
 </div>
-<footer class="footer">
-  <div id="footer" class="d-flex justify-content-center align-items-center">
-<p>
-<a>
-   Powered by <a href="http://www.iot-inc.com/"> <img src="immagini/iotlogo.png" height="70" width="140" hspace=”20″>
-   </a>
- </p>
-  </div>
 
-</footer>
 </body>
 </html>
 
